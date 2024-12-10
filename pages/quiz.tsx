@@ -38,9 +38,14 @@ const questions: QuestionFormat[] = [
 ]
 
 
-const Quiz = () => {
-    const [score, setScore] = useState(0)
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+interface QuizProps {
+    score: number,
+    setScore: React.Dispatch<React.SetStateAction<number>>,
+    currentQuestionIndex: number,
+    setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>
+}
+
+const Quiz = ({ score, setScore, currentQuestionIndex, setCurrentQuestionIndex }: QuizProps) => {
     const router = useRouter()
     
     const clickFunction = (correct: boolean) => {
