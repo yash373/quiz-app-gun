@@ -6,5 +6,5 @@ export default function App({ Component, pageProps }: AppProps) {
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  return <Component {...pageProps} score={score} setScore={setScore} currentQuestionIndex={currentQuestionIndex} setCurrentQuestionIndex={setCurrentQuestionIndex} totalQuestions={currentQuestionIndex} />;
+  return <Component {...pageProps} score={score} setScore={setScore} currentQuestionIndex={currentQuestionIndex} setCurrentQuestionIndex={setCurrentQuestionIndex} totalQuestions={currentQuestionIndex+1} />;
 }
