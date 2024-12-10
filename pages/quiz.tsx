@@ -1,8 +1,8 @@
 import React from 'react'
-import GunAnimation from '@/components/Quiz/GunAnimation'
 import Question from '@/components/Quiz/Question'
 import { useState } from 'react'
 import { QuestionFormat } from '@/components/Quiz/Question'
+import { useRouter } from 'next/router'
 
 const questions: QuestionFormat[] = [
     {
@@ -40,13 +40,23 @@ const questions: QuestionFormat[] = [
 
 const Quiz = () => {
     const [score, setScore] = useState(0)
-    const [currentQuestion, setCurrentQuestion] = useState(false)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+    const router = useRouter()
     
+    const clickFunction = (correct: boolean) => {
+        if (correct) {
+            setScore(score + 1)
+        }
+        if (currentQuestionIndex < questions.length - 1) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1)
+        }else{
+            router.push("/result")
+        }
+    }
+
     return (
-        <div className='flex flex-col space-y-10 items-center justify-center h-screen'>
-                <Question question={questions[currentQuestionIndex].question} options={questions[currentQuestionIndex].options} answer={questions[currentQuestionIndex].answer} />
-                <GunAnimation />
+        <div className='flex flex-col items-center justify-center h-screen'>
+                <Question question={questions[currentQuestionIndex].question} options={questions[currentQuestionIndex].options} answer={questions[currentQuestionIndex].answer} clickFunction={clickFunction} />
         </div>
     )
 }
